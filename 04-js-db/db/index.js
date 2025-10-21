@@ -16,4 +16,4 @@ console.log(kunden)
 
 //console.log(kunden[0])
 
-//console.log(kunden[0].plz)
+console.log(kunden[0].plz)
