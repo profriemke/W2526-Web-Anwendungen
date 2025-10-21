@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meine Anwendung</title>
 </head>
+
 <body>
-  <h1>Hallo </h1>
-  hallo {{ name }}
+  <h1>Hallo {{ name }}</h1>
   <ul>
     <li>{{ tier1 }}</li>
     <li>{{ tier2 }}</li>
   </ul>
+  <h2>Fächer</h2>
+  @if(faecher && faecher.length)
+  <ul>
+    @each(fach in faecher)
+    <li>{{ fach }}</li>
+    @endeach
+  </ul>
+  @else
+  <p>heute frei</p>
+  @endif
 </body>
+
 </html>

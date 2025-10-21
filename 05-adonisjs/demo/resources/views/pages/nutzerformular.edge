@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Eingabe</h1>
+    <form action="/nutzer/ausgabe" method="post">
+        {{ csrfField() }}
+        <input type="text" name="vorname" placeholder="Dein Vorname" minlength="3" maxlength="30"><br>
+        <input type="text" name="nachname" placeholder="Dein Nachname"><br>
+        <input type="submit" value="Name anzeigen"><br>
+
+    </form>
+</body>
+</html>
