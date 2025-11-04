@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMM Blog</title>
+</head>
+
+<body>
+  <h1>Mein Blog</h1>
+  @each(post in posts)
+  <p>
+  <h2>{{ post.title }}</h2>
+  <div>{{ post.teaser }}</div>
+  <div>{{ post.text }}</div>
+  <div>
+    <span>{{ post.date }}</span>
+    <span>{{post.author }}</span>
+  </div>
+  </p>
+  @end
+</body>
+
+</html>

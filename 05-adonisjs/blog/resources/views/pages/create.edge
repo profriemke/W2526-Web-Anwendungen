@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Blog Post estellen</h1>
+    <form action="/post/create" method="POST">
+        {{ csrfField() }}
+        <input type="text" name="title"><br>
+        <input type="text" name="teaser"><br>
+        <textarea name="text"></textarea><br>
+        <button type="submit">erstellen</button>
+    </form>
+</body>
+
+</html>

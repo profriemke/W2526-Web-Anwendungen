@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Das Voting: Pizza</h1>
+    Wie findest Du Pizza?
+    <form action="/vote" method="post">
+        {{ csrfField() }}
+        <input type="radio" name="vote" value="spitze">
+        <label for="spitze">spitze</label><br>
+        <input type="radio" name="vote" value="geht">
+        <label for="geht">geht</label><br>
+        <input type="radio" name="vote" value="weg">
+        <label for="weg">weg</label><br><br>
+
+        <button type="submit">voten!</button>
+    </form>
+    
+</body>
+</html>
