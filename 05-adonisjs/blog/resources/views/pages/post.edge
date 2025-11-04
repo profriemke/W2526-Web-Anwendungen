@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>
+        {{ post.teaser }}
+    </p>
+    <p>
+        {{ post.text}}
+    </p>
+    <p>
+        <span>{{ new Date(post.date).toLocaleDateString()  }}</span>
+        <span>{{ post.author }}</span>
+    </p>
+    <p>
+        <a href="/">zurück</a>
+    </p>
+</body>
+</html>
