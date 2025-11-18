@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+      @include('partials/menu')
+    @if(post != undefined)
     <h1>{{ post.title }}</h1>
     <p>
         {{ post.teaser }}
@@ -14,11 +18,16 @@
         {{ post.text}}
     </p>
     <p>
-        <span>{{ new Date(post.date).toLocaleDateString()  }}</span>
-        <span>{{ post.author }}</span>
+        <span>{{ new Date(post.date).toLocaleDateString() }}</span>
+        <p>Artikel von: {{ author.firstname }} {{ author.lastname }}</p>
     </p>
+    @else
+    <h1>Beitrag nicht gefunden</h1>
+    @end
     <p>
         <a href="/">zurück</a>
     </p>
+     @include('partials/footer')
 </body>
+
 </html>
