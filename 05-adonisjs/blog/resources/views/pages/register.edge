@@ -10,9 +10,17 @@
 <body>
     @include('partials/menu')
     <h1>registrieren</h1>
-    @if(error != undefined)
-    <p>{{ error }} </p>
+    
+    @flashMessage('notification')
+    <div class="notification {{ $message.type }}">
+        {{ $message.message }}
+    </div>
     @end
+
+
+
+
+
     <form action="/register" method="POST">
         {{ csrfField() }}
         <input type="text" name="firstname" placeholder="Vorname"><br>

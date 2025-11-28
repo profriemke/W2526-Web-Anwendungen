@@ -11,33 +11,89 @@ import router from '@adonisjs/core/services/router'
 import db from '@adonisjs/lucid/services/db'
 import hash from '@adonisjs/core/services/hash'
 
-router.get('/about', async ({ view })=>{
+router.get('/edit/:id', async ({ view, params, response, session }) => {
+    if (session.get('login') === undefined) {
+        return response.redirect('/login')
+    }
+    console.log(params.id)
+    const post = await db.from('post').select('*').where({ id: params.id }).first()
+    if (!post) {
+        return response.redirect().back()
+    }
+    console.log(post)
+    return view.render('pages/edit', post)
+})
+
+router.post('/edit', async ({ request, response, session }) => {
+    if (session.get('login') === undefined) {
+        return response.redirect('/login')
+    }
+    const { id, title, teaser, text } = request.all()
+    if (!id || !title || !teaser || !text) {
+        return response.redirect().back()
+    }
+    const result = await db.from('post')
+        .update({
+            title,
+            teaser,
+            text
+        })
+        .where({
+            id: id
+        })
+
+    if (!result) {
+        return 'Fehler'
+    }
+    return response.redirect('/post/' + id)
+})
+
+
+
+router.get('/about', async ({ view }) => {
     return view.render('pages/about')
 })
-router.get('/register', async ({ view })=>{
+router.get('/register', async ({ view }) => {
     return view.render('pages/register')
 })
-router.post('/register', async ({ request, response, view})=>{
+router.post('/register', async ({ request, response, view, session }) => {
     const { firstname, lastname, login, password } = request.all()
-    if(!firstname || !lastname || !login || !password){
-        return view.render('pages/register', {error:'Eines der Felder nicht ausgefüllt'})
+    let error = ''
+    if (!firstname) {
+        error += 'Vorname fehlt. '
+    }
+    if (!lastname) {
+        error += 'Nachname fehlt. '
+    }
+    if (!login) {
+        error += 'Login fehlt. '
+    }
+    if (!password) {
+        error += 'Passwort fehlt. '
+    }
+    if (error != '') {
+        session.flash('notification', {
+            type: 'error',
+            message: error
+        })
+        return response.redirect().back()
     }
     const exists = await db.from('user')
-                           .select('*')
-                           .where({
-                             login: login 
-                            })
-    if(exists.length > 0){
-        return view.render('pages/register', {error:'login bereits vergeben'})
+        .select('*')
+        .where({
+            login: login
+        })
+    if (exists.length > 0) {
+        return view.render('pages/register', { error: 'login bereits vergeben' })
     }
     const result = await db.table('user')
-                           .insert({
-                            firstname: firstname,
-                            lastname: lastname,
-                            login: login,
-                            password: await hash.make(password)
-                           })
-    
+        .insert({
+            firstname: firstname,
+            lastname: lastname,
+            login: login,
+            password: await hash.make(password)
+        })
+
     return response.redirect('/login')
 })
 
@@ -84,7 +140,7 @@ router.get('/', async ({ view, session }) => {
         .select('*')
         .orderBy('date', 'desc')
     console.log(posts)
-    return view.render('pages/home', { posts, login: session.get('login'), firstname:session.get('firstname'), lastname:session.get('lastname') })
+    return view.render('pages/home', { posts, login: session.get('login'), firstname: session.get('firstname'), lastname: session.get('lastname') })
 })
 
 router.get('/post/create', async ({ view, session, response }) => {
@@ -119,7 +175,7 @@ router.post('/post/create', async ({ response, request, session }) => {
 
 
 
-router.get('/post/:id', async ({ view, params }) => {
+router.get('/post/:id', async ({ view, params, session }) => {
     console.log(params.id)
     const post = await db.from('post')
         .select('*')
@@ -131,7 +187,7 @@ router.get('/post/:id', async ({ view, params }) => {
         .first()
 
     console.log(post)
-    return view.render('pages/post', { post, author })
+    return view.render('pages/post', { post, author, login: session.get('login') })
 })
 
 

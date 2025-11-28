@@ -27,6 +27,11 @@
     <p>
         <a href="/">zurück</a>
     </p>
+    @if(login != undefined)
+    <p>
+        <a href="/edit/{{ post.id }}">bearbeiten</a>
+    </p>
+    @end
      @include('partials/footer')
 </body>
 

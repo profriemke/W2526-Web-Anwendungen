@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+
+<body>
+      @include('partials/menu')
+    <h1>Blog Post editieren</h1>
+    <form action="/edit" method="POST">
+        {{ csrfField() }}
+        <input type="hidden" name="id" value="{{ id }}">
+        <input type="text" name="title" value="{{title}}"><br>
+        <input type="text" name="teaser" value="{{teaser}}"><br>
+        <textarea name="text">{{ text }}</textarea><br>
+        <button type="submit">speichern</button>
+    </form>
+     @include('partials/footer')
+</body>
+
+</html>
