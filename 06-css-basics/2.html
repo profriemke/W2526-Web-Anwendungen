@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .weihnachten {
+            width: 200px;
+            height: 200px;
+            margin: 30px;
+            padding: 5px;
+            border: 8px dotted yellow;
+            background-color: red;
+            color: white;
+
+        }
+
+        .ostern {
+            width: 40px;
+            height: 40px;
+            margin: 30px;
+            padding: 5px;
+            border: 8px dotted rgb(255, 55, 0);
+            background-color: rgb(0, 255, 21);
+            color: white;
+
+        }
+
+        .ostern:hover {
+            background-color: blue;
+            border: 8px dotted rgb(77, 255, 0);
+        }
+
+        #beispiel {
+            background-color: blue;
+            color: white;
+        }
+        #beispiel::after{
+            content: " €"
+        }
+
+        a:link {
+            color: green;
+        }
+
+        a:visited {
+            color: palevioletred;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weihnachten">Hallo</div>
+    <div class="ostern">Hallo</div>
+    <div id="beispiel">100</div>
+    <div id="beispiel">300</div>
+
+    <a href="https://www.hdm-stuttgart.de">zur HdM</a>
+</body>
+
+</html>

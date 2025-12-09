@@ -5,15 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OMM Blog</title>
+  @vite(['resources/css/style.css'])
 </head>
 
 <body>
   @include('partials/menu')
   <h1>Mein Blog</h1>
   @if(login === undefined)
-   <a href="/login">Anmelden</a>
+  <a href="/login">Anmelden</a>
   @else
-   Hallo {{firstname}} {{ lastname}}<br>
+  Hallo {{firstname}} {{ lastname}}<br>
   <a href="/post/create">neuer Post</a>
   <a href="/logout">Abmelden</a>
   @end

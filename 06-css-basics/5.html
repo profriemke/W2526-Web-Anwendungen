@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        @media print {
+            #box {
+                width: 100px;
+                height: 100px;
+                background-color: rgb(19, 18, 18);
+                color: #fff;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">text</div>
+</body>
+
+</html>
