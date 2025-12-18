@@ -12,6 +12,9 @@
     @if(post != undefined)
     <h1>{{ post.title }}</h1>
     <p>
+        <img src="{{ await driveUrl(post.image, 'fs')}}" height="300" alt="{{post.title}}">
+    </p>
+    <p>
         {{ post.teaser }}
     </p>
     <p>

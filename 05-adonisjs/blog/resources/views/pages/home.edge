@@ -9,23 +9,27 @@
 </head>
 
 <body>
+  @let(page='home')
   @include('partials/menu')
-  <h1>Mein Blog</h1>
-  @if(login === undefined)
-  <a href="/login">Anmelden</a>
-  @else
-  Hallo {{firstname}} {{ lastname}}<br>
-  <a href="/post/create">neuer Post</a>
-  <a href="/logout">Abmelden</a>
-  @end
+  <main>
+    <h1>Mein Blog</h1>
+    @if(login === undefined)
+    <a href="/login">Anmelden</a>
+    @else
+    Hallo {{firstname}} {{ lastname}}<br>
+    <a href="/post/create">neuer Post</a>
+    <a href="/logout">Abmelden</a>
+    @end
 
-  @each(post in posts)
-  <p>
-  <h2>{{ post.title }}</h2>
-  <div>{{ post.teaser }} <a href="/post/{{ post.id }}"> mehr...</a></div>
-  </p>
-  @end
-  @include('partials/footer')
+    @each(post in posts)
+    <p>
+    <h2>{{ post.title }}</h2>
+    <div>{{ post.teaser }} <a href="/post/{{ post.id }}"> mehr...</a></div>
+    </p>
+    @end
+
+    @include('partials/footer')
+  </main>
 </body>
 
 </html>

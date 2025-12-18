@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    @vite(['resources/css/style.css'])
 </head>
+
 <body>
+    @let(page='about')
     @include('partials/menu')
-    <h1>Über uns</h1>
-    <p>
-        Wir sind der weltweit führende Studiengang für Online Medien Management.
-    </p>
-    @include('partials/footer')
+    <main>
+        <h1>Über uns</h1>
+        <p>
+            Wir sind der weltweit führende Studiengang für Online Medien Management.
+        </p>
+        @include('partials/footer')
+    </main>
 </body>
+
 </html>

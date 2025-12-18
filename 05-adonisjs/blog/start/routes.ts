@@ -10,19 +10,31 @@
 import router from '@adonisjs/core/services/router'
 import db from '@adonisjs/lucid/services/db'
 import hash from '@adonisjs/core/services/hash'
+import { cuid } from '@adonisjs/core/helpers'
+import drive from '@adonisjs/drive/services/main'
+const PostsController = () => import('#controllers/posts_controller')
 
-router.get('/edit/:id', async ({ view, params, response, session }) => {
-    if (session.get('login') === undefined) {
-        return response.redirect('/login')
-    }
-    console.log(params.id)
-    const post = await db.from('post').select('*').where({ id: params.id }).first()
-    if (!post) {
-        return response.redirect().back()
-    }
-    console.log(post)
-    return view.render('pages/edit', post)
+
+router.get('/', [PostsController, 'index'])
+router.get('/edit/:id', [PostsController, 'edit'])
+router.post('/post/create', [PostsController, 'create'])
+
+// Secret Drive
+router.get('/privat/upload', ({ view })=>{
+    return view.render('pages/secret-form')
 })
+router.post('/privat/upload', async ({ request, response })=>{
+    const image = request.file('image')
+     const key = `${cuid()}.${image?.extname}`
+    await image?.moveToDisk(key, 'secret')
+    return response.redirect('/privat/upload')
+})
+
+router.get('/privat/:id', async ({ params})=>{
+
+ return await drive.use('secret').getSignedUrl(params.id)
+})
+
 
 router.post('/edit', async ({ request, response, session }) => {
     if (session.get('login') === undefined) {
@@ -135,13 +147,7 @@ router.post('/login', async ({ request, response, session }) => {
 })
 
 
-router.get('/', async ({ view, session }) => {
-    const posts = await db.from('post')
-        .select('*')
-        .orderBy('date', 'desc')
-    console.log(posts)
-    return view.render('pages/home', { posts, login: session.get('login'), firstname: session.get('firstname'), lastname: session.get('lastname') })
-})
+
 
 router.get('/post/create', async ({ view, session, response }) => {
     if (session.get('login') === undefined) {
@@ -150,28 +156,8 @@ router.get('/post/create', async ({ view, session, response }) => {
     return view.render('pages/create')
 })
 
-router.post('/post/create', async ({ response, request, session }) => {
 
-    if (session.get('login') === undefined) {
-        return response.redirect('/login')
-    }
 
-    const { title, teaser, text } = request.all()
-
-    if (!title || !teaser || !text) {
-        return response.redirect('/post/create')
-    }
-
-    const result = await db.table('post').insert({
-        title: title,
-        teaser: teaser,
-        text: text,
-        date: new Date().toString(),
-        author: session.get('login')
-    })
-    console.log(result)
-    return response.redirect('/')
-})
 
 
 

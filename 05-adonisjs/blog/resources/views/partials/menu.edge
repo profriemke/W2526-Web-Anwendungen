@@ -1,6 +1,14 @@
 <nav>
     <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">Über uns</a></li>
+        <li><a href="/" 
+        @if(page=='home')
+            class="active"
+        @end
+        >Home</a></li>
+        <li><a href="/about"
+          @if(page=='about')
+            class="active"
+        @end
+        >Über uns</a></li>
     </ul>
 </nav>
