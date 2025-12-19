@@ -8,7 +8,7 @@
 </head>
 
 <body>
-      @include('partials/menu')
+    @include('partials/menu')
     @if(post != undefined)
     <h1>{{ post.title }}</h1>
     <p>
@@ -22,7 +22,7 @@
     </p>
     <p>
         <span>{{ new Date(post.date).toLocaleDateString() }}</span>
-        <p>Artikel von: {{ author.firstname }} {{ author.lastname }}</p>
+    <p>Artikel von: {{ author.firstname }} {{ author.lastname }}</p>
     </p>
     @else
     <h1>Beitrag nicht gefunden</h1>
@@ -35,7 +35,7 @@
         <a href="/edit/{{ post.id }}">bearbeiten</a>
     </p>
     @end
-     @include('partials/footer')
+    @include('partials/footer')
 </body>
 
 </html>

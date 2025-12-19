@@ -5,6 +5,7 @@ import drive from '@adonisjs/drive/services/main'
 
 export default class PostsController {
     public async index({ view, session }: HttpContext) {
+        break
         const posts = await db.from('post')
             .select('*')
             .orderBy('date', 'desc')
