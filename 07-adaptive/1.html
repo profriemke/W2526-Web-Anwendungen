@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --maincolor: cornflowerblue;
+        }
+        nav ul{
+            padding: 0px;
+            list-style: none;
+            display: flex;
+            gap: 3px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: var(--maincolor);
+            display: block;
+            font-size: 1.5em;
+            width: 150px;
+            height: 30px;
+            padding: 5px;
+            color: white
+        }
+        nav ul li a:hover{
+            background-color: rgb(129, 170, 246);
+        }
+
+        @media (0px <= width <= 780px){
+           nav ul{
+            flex-direction: column;
+           }
+           nav ul li a{
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            font-size: 2.5em;
+           }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Produkte</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Download</a></li>
+            <li><a href="#">Über uns</a></li>
+        </ul>
+    </nav>
+    <img src="https://img.riemke.dev/1600/800"
+         srcset="https://img.riemke.dev/1600/800 1600w,
+                         https://img.riemke.dev/800/400   800w,
+                         https://img.riemke.dev/400/200  200w">
+</body>
+</html>

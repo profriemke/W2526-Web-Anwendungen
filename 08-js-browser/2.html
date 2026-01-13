@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Überschrift</h1>
+    <a href="https://www.hdm-stuttgart.de">zur HdM</a><br>
+    <button onclick="$('h1').hide()">ausblenden</button><br>
+    <button onclick="$('h1').show()">einblenden</button><br>
+    <button onclick="$('h1').toggle()">Toggle</button><br>
+    <button onclick="$('h1').css('color', 'green')">grün</button><br>
+    <button onclick="$('h1').css('color', 'red')">rot</button><br>
+    <button onclick="$('h1').css('font-size', '10em')">em</button><br>
+    <button onclick="$('h1').animate({ left:'100px', bottom: '100px' });">animate!</button><br>
+    <button onclick="$('h1').html('Riemke war da')">ändern</button><br>
+    <button onclick="$('a').attr('href', 'https://www.if-schleife.de')">Link</button>
+    <br>
+    <br>
+    <button id="hidebutton">hide</button>
+    <div id="hidediv">hide</div>
+
+    <script>
+        $('#hidebutton').mouseover(function (){
+            $('h1').hide()
+        })
+        $('#hidediv').mouseover(function (){
+            $('h1').hide()
+        })
+    </script>
+
+</body>
+</html>
